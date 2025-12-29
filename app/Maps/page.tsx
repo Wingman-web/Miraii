@@ -4,10 +4,10 @@ export default function MapsPage() {
   return (
     <div className="w-screen h-screen">
       <PanoramaViewer
-        panoramaUrl="/200M.JPG"
+        panoramaUrl="/panorama.dzi"
         masterPlanUrl="/master_plan.png"
         preloaderGifUrl="/Earth animated.gif"
-        label="200M.JPG"
+        label="panorama.dzi"
         autoRotate={true}
         rotationDuration={30000}
         initialPitch={-90}

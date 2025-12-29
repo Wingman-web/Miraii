@@ -143,16 +143,109 @@ export function PanoramaViewer({
 
         if (!mounted) return;
 
-        const panoramaDataUrl = await loadImageAsDataUrl(panoramaUrl);
+        // If a Deep Zoom (.dzi) file is passed, configure a multires panorama
+        let config;
+
+        if (panoramaUrl && panoramaUrl.endsWith('.dzi')) {
+          // Fetch the .dzi file to get tile info (TileSize/Format/Size)
+          const dziText = await fetch(panoramaUrl).then((r) => r.text());
+          const tileSizeMatch = dziText.match(/TileSize="(\d+)"/i);
+          const formatMatch = dziText.match(/Format="([a-zA-Z0-9]+)"/i);
+          const sizeMatch = dziText.match(/Size\s+Width="(\d+)"\s+Height="(\d+)"/i);
+
+          const tileSize = tileSizeMatch ? parseInt(tileSizeMatch[1], 10) : 512;
+          const format = formatMatch ? formatMatch[1] : 'jpg';
+          const width = sizeMatch ? parseInt(sizeMatch[1], 10) : null;
+          const height = sizeMatch ? parseInt(sizeMatch[2], 10) : null;
+
+          const maxDim = Math.max(width || 0, height || 0) || 0;
+          const maxLevel = maxDim > 0 ? Math.ceil(Math.log2(maxDim)) : undefined;
+
+          // Sharp (and many DZI generators) create tiles in a folder named <base>_files
+          const basePath = panoramaUrl.replace(/\.dzi$/i, '_files');
+
+          config = {
+            type: 'multires',
+            multiRes: {
+              basePath,
+              // path uses %l for level, %x and %y for tile indices
+              path: '%l/%x_%y',
+              extension: format,
+              tileResolution: tileSize,
+              maxLevel: maxLevel,
+              cubeResolution: maxDim || undefined,
+            },
+            pitch: initialPitch,
+            yaw: initialYaw,
+            hfov: initialHfov,
+            minHfov: 50,
+            maxHfov: 120,
+            autoLoad: true,
+            showControls: true,
+            compass: true,
+            friction: 0.15,
+            draggable: true,
+            mouseZoom: true,
+            doubleClickZoom: true,
+            vaov: 180,
+            haov: 360,
+            backgroundColor: [0, 0, 0],
+            dynamicUpdate: true,
+            autoRotate: 0,
+            autoRotateInactivityDelay: -1,
+            autoRotateStopDelay: -1,
+            orientationOnByDefault: false,
+            showZoomCtrl: true,
+            crossOrigin: 'anonymous',
+            hotSpots: hotspots.map((hs) => ({
+              pitch: hs.pitch,
+              yaw: hs.yaw,
+              cssClass: 'label-hotspot',
+              createTooltipFunc: createHotspotTooltip(hs),
+            })),
+          };
+        } else {
+          const panoramaDataUrl = await loadImageAsDataUrl(panoramaUrl);
+
+          if (!mounted) return;
+
+          const hotspotConfigs = hotspots.map((hs) => ({
+            pitch: hs.pitch,
+            yaw: hs.yaw,
+            cssClass: 'label-hotspot',
+            createTooltipFunc: createHotspotTooltip(hs),
+          }));
+
+          config = {
+            type: 'equirectangular',
+            panorama: panoramaDataUrl,
+            pitch: initialPitch,
+            yaw: initialYaw,
+            hfov: initialHfov,
+            minHfov: 50,
+            maxHfov: 120,
+            autoLoad: true,
+            showControls: true,
+            compass: true,
+            friction: 0.15,
+            draggable: true,
+            mouseZoom: true,
+            doubleClickZoom: true,
+            vaov: 180,
+            haov: 360,
+            backgroundColor: [0, 0, 0],
+            dynamicUpdate: true,
+            autoRotate: 0,
+            autoRotateInactivityDelay: -1,
+            autoRotateStopDelay: -1,
+            orientationOnByDefault: false,
+            showZoomCtrl: true,
+            crossOrigin: 'anonymous',
+            hotSpots: hotspotConfigs,
+          };
+        }
 
         if (!mounted) return;
-
-        const hotspotConfigs = hotspots.map((hs) => ({
-          pitch: hs.pitch,
-          yaw: hs.yaw,
-          cssClass: 'label-hotspot',
-          createTooltipFunc: createHotspotTooltip(hs),
-        }));
 
         if (masterPlanUrl) {
           hotspotConfigs.unshift({
