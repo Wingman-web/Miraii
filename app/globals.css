@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+/* Set site-wide font to Century Gothic (local font when available) */
+html, body {
+	/* Prevent horizontal scroll caused by overflowing children */
+	overflow-x: hidden;
+	font-family: var(--font-family-century, "Century Gothic", "CenturyGothic", Arial, sans-serif);
+}
+
+/* Use Magra / Migra for headings (loaded via next/font/google and local Migra) */
+h1,h2{
+	font-family: 'Migra', var(--font-magra, "Magra", "Century Gothic", Arial, sans-serif);
+	font-weight: 100;
+	letter-spacing: 5px;
+	opacity: 0.85;
+	line-height: 1.05;
+}
+
+/* Keep smaller headings with Magra as fallback */
+h3,h4,h5,h6{
+	font-family: var(--font-magra, "Magra", "Century Gothic", Arial, sans-serif);
+}
+
+/* Hide scrollbars for elements (panels) */
+.hide-scrollbar {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+	display: none; /* Chrome, Safari and Opera */
+}
+
+/* Thin Magra utility class used for headings that should appear lighter */
+.thin-magra {
+	font-family: 'Magra', sans-serif;
+	font-weight: 400; /* Use the lightest available */
+	letter-spacing: 0.5px; /* Slight spacing makes it feel lighter */
+	opacity: 0.8; /* Lower opacity often makes text appear thinner */
+}
+
+/* Display heading style (serif) to match provided reference image */
+.display-heading {
+	font-family: 'Playfair Display', serif;
+	font-weight: 400;
+	letter-spacing: 6px;
+	line-height: 1.05;
+	color: #78252f;
+}
+
+/* Local Migra font-face and utility so we can render weight 100 reliably */
+@font-face {
+	font-family: 'Migra';
+	font-style: normal;
+	font-weight: 100;
+	font-display: swap;
+	src: url('/fonts/migra/Migra-Extralight.woff2') format('woff2'),
+		 url('/fonts/migra/Migra-Extralight.woff') format('woff'),
+		 url('/fonts/migra/Migra-Extralight.ttf') format('truetype'),
+		 url('/fonts/migra/Migra-Extralight.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'Century-Gothic';
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+	src: url('/fonts/century-gothic/SansSerifFLF/SansSerifFLF.otf') format('opentype');
+}
+
+.migra-heading {
+	font-family: 'Migra', 'Magra', var(--font-family-century, 'Century Gothic'), sans-serif;
+	font-weight: 100;
+ 	letter-spacing: 8px; /* slightly wider to feel thinner */
+ 	opacity: 0.85; /* reduce opacity so strokes appear lighter */
+ 	color: #78252f;
+ 	line-height: 1.05;
+ 	text-rendering: optimizeLegibility;
+ 	-webkit-font-smoothing: antialiased;
+}
+/* Specific heading style for the '4 Pods' section (applied only to that H2) */
+.pods-heading {
+	display: block;
+	font-family: 'Migra', 'Magra', var(--font-magra, "Magra", "Century Gothic", Arial, sans-serif);
+	font-size: 48px !important;
+	margin-block-start: 0.83em;
+	margin-block-end: 0.83em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	font-weight: 250 !important; /* custom lighter weight */
+	letter-spacing: 4px; /* slightly tighter for this weight */
+	opacity: 0.95; /* slightly reduced opacity */
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	unicode-bidi: isolate;
+}

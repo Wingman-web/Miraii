@@ -1,0 +1,192 @@
+'use client';
+
+
+
+export default function InteractiveMap() { return null; }
+import mapImage from './map.png';
+import SelectionPanel from './SelectionPanel';
+
+
+
+interface Location {
+
+  name: string;
+
+  lat: number;
+
+  lng: number;
+
+}
+
+
+
+interface LocationGroup {
+
+  title: string;
+
+  locations: string[];
+
+}
+
+
+
+const COORDINATES = {
+
+  'The League Sports Village': { lat: 17.425, lng: 78.337 },
+
+  'Prestige Skytech': { lat: 17.412, lng: 78.333 },
+
+  'Ignite Art Cafe': { lat: 17.414, lng: 78.335 },
+
+  'Tansen Restaurant': { lat: 17.413, lng: 78.334 },
+
+  'Asie Stories': { lat: 17.416, lng: 78.336 },
+
+  'Mamalola': { lat: 17.415, lng: 78.332 },
+
+  'Soul of South': { lat: 17.417, lng: 78.338 },
+
+  'Cycling Track': { lat: 17.418, lng: 78.340 },
+
+  'Myscape Stories': { lat: 17.411, lng: 78.345 },
+
+  'The Kidz Land': { lat: 17.410, lng: 78.342 },
+
+  'ORR': { lat: 17.4139, lng: 78.3804 },
+
+};
+
+
+
+const DEFAULT_CENTER = { lat: 17.414994, lng: 78.332845 };
+
+
+
+const LOCATION_GROUPS: LocationGroup[] = [
+
+  {
+
+    title: 'Walk',
+
+    locations: [
+
+      'The League Sports Village',
+
+      'Prestige Skytech',
+
+      'Ignite Art Cafe',
+
+      'Tansen Restaurant',
+
+      'Asie Stories',
+
+      'Mamalola',
+
+      'Soul of South',
+
+    ],
+
+  },
+
+  {
+
+    title: '2 Min Drive',
+
+    locations: ['Cycling Track', 'Myscape Stories', 'The Kidz Land', 'ORR'],
+
+  },
+
+];
+
+
+
+export default function InteractiveMap() {
+
+  const [selectedLocation, setSelectedLocation] = useState<string>('Select a location');
+
+  const [expandedAccordion, setExpandedAccordion] = useState<string>('Walk');
+
+  const mapRef = useRef<HTMLDivElement>(null);
+
+
+
+  const handleLocationClick = (locationName: string) => {
+    setSelectedLocation(locationName);
+  };
+
+
+
+  const toggleAccordion = (title: string) => {
+
+    setExpandedAccordion(expandedAccordion === title ? '' : title);
+
+  };
+
+
+
+  return (
+
+    <div className="bg-white h-screen">
+
+      <div className="container mx-auto px-4 h-full flex items-center">
+
+        <div className="grid lg:grid-cols-12 gap-8 items-start h-full">
+
+          <div className="lg:col-span-5">
+            <div className="space-y-4">
+              <h5 className="text-blue-600 font-semibold tracking-wider text-sm">CONNECTIVITY</h5>
+              <h1 className="text-4xl font-bold text-gray-900">The Element of Time</h1>
+              <p className="text-gray-600 leading-relaxed">Located in the Financial District, Pavani Mirai is situated just off the main road.</p>
+              <div className="flex flex-wrap gap-4 pt-4">
+                <a href="#" className="text-blue-600 hover:underline">Location</a>
+                <a href="#" className="text-blue-600 hover:underline">Interactive Map</a>
+              </div>
+            </div>
+          </div>
+
+
+
+          {/* Right Column - Map with Overlapping Panel */}
+
+          <div className="lg:col-span-7">
+
+            <div className="bg-gray-100 p-5 rounded-lg h-full flex items-start relative overflow-visible">
+
+              <div className="w-full h-[65vh] lg:h-[75vh] mt-8 lg:mt-0 lg:absolute lg:left-0 lg:top-12 lg:-ml-24 lg:w-[60%] lg:max-w-none lg:z-10">
+
+                {/* Map Area - Base Layer */}
+
+                <div ref={mapRef} className="absolute inset-0 rounded-lg overflow-hidden bg-cover bg-left" style={{ backgroundImage: 'url(/components/Home/Interative_Map/map.png)' }} />
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+                {/* Selection Panel - Overlapping Layer */}
+                <div className="p-4">Map placeholder</div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  );
+
+} 

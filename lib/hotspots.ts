@@ -1,0 +1,42 @@
+import type { HotspotData } from '@/types/panorama';
+
+export const defaultHotspots: HotspotData[] = [
+  { id: 'hp-league-sports', pitch: -40, yaw: 65, title: 'The League Sports Village', distance: 'Walk Away', highlight: true, icon: 'sports' },
+  { id: 'hp-prestige', pitch: -10, yaw: 83, title: 'Prestige Skytech', distance: 'Walk Away', icon: 'building' },
+  { id: 'hp-ignite', pitch: -7, yaw: 64, title: 'Ignite Art Cafe', distance: 'Walk Away', icon: 'cafe' },
+  { id: 'hp-tansen', pitch: -11, yaw: 93, title: 'Tansen Restaurant', distance: 'Walk Away', icon: 'restaurant' },
+  { id: 'hp-asie', pitch: -33, yaw: 182, title: 'Asie Stories', distance: 'Walk Away', icon: 'restaurant' },
+  { id: 'hp-mamalola', pitch: -32, yaw: 170, title: 'Mamalola', distance: 'Walk Away', icon: 'restaurant' },
+  { id: 'hp-south', pitch: -30, yaw: 174, title: 'Soul Of South Bar & Kitchen', distance: 'Walk Away', icon: 'bar' },
+  { id: 'hp-track', pitch: -4, yaw: 203, title: 'Cycling Track', distance: '2 Mins', icon: 'cycling' },
+  { id: 'hp-stories', pitch: -9, yaw: 108, title: 'Myscape Stories', distance: '2 Mins', icon: 'building' },
+  { id: 'hp-kids', pitch: -5, yaw: 110, title: 'Kids District & Kids Lands', distance: '2 Mins', icon: 'kids' },
+  { id: 'hp-orr', pitch: -2, yaw: 130, title: 'ORR', distance: '2 Mins', icon: 'road' },
+  { id: 'hp-flipside', pitch: -17, yaw: 260, title: 'Flipside Adventure Park', distance: '2 Mins', icon: 'park' },
+  { id: 'hp-fishermens', pitch: -18, yaw: 220, title: "The Fishermens Wharf", distance: '2 Mins', icon: 'restaurant' },
+  { id: 'hp-tabula', pitch: -8, yaw: 50, title: 'Tabula Rasa', distance: '2 Mins', icon: 'restaurant' },
+  { id: 'hp-vanlavino', pitch: -23, yaw: 150, title: 'Van Lavino', distance: '2 Mins', icon: 'restaurant' },
+  { id: 'hp-golf', pitch: -12, yaw: 266, title: 'One Golf Brewery & Moai', distance: '2 Mins', icon: 'golf' },
+  { id: 'hp-keystone', pitch: -5, yaw: 90, title: 'Keystone School', distance: '5 Mins', icon: 'school' },
+  { id: 'hp-isb', pitch: -1, yaw: 370, title: 'ISB', distance: '5 Mins', icon: 'school' },
+  { id: 'hp-gaudium', pitch: -1, yaw: 410, title: 'The Gaudium School', distance: '5 Mins', icon: 'school' },
+  { id: 'hp-anvaya', pitch: -3, yaw: 265, title: 'Anvaya Convention', distance: '5 Mins', icon: 'convention' },
+  { id: 'hp-pradhan', pitch: -14, yaw: 240, title: 'Pradhan Convention', distance: '5 Mins', icon: 'convention' },
+  { id: 'hp-cognizant', pitch: -13, yaw: 370, title: 'Cognizant', distance: '5 Mins', icon: 'tech' },
+  { id: 'hp-capgemini', pitch: -13, yaw: 400, title: 'Capgemini', distance: '5 Mins', icon: 'tech' },
+  { id: 'hp-amazon', pitch: -2, yaw: 35, title: 'Amazon Hyderabad Campus', distance: '5 Mins', icon: 'tech' },
+  { id: 'hp-waverock', pitch: -2, yaw: 65, title: 'WaveRock SEZ', distance: '5 Mins', icon: 'tech' },
+  { id: 'hp-shriram', pitch: -3, yaw: 235, title: 'Shriram Academy', distance: '10 Mins', icon: 'school' },
+  { id: 'hp-consulate', pitch: 0, yaw: 342, title: 'U.S. Consulate General', distance: '10 Mins', icon: 'government' },
+  { id: 'hp-neopolis', pitch: -1, yaw: 247, title: 'Neopolis', distance: '10 Mins', icon: 'shopping' },
+  { id: 'hp-gandipet', pitch: -1, yaw: 260, title: 'Gandipet Lake', distance: '10 Mins', icon: 'lake' },
+  { id: 'hp-wipro', pitch: -5, yaw: 380, title: 'Wipro Circle', distance: '10 Mins', icon: 'tech' },
+  { id: 'hp-google', pitch: 0, yaw: 415, title: 'Google', distance: '10 Mins', icon: 'tech' },
+  { id: 'hp-iiit', pitch: 1, yaw: 375, title: 'IIIT Hyderabad', distance: '10 Mins', icon: 'university' },
+  { id: 'hp-cbit', pitch: -1, yaw: 240, title: 'CBIT', distance: '10 Mins', icon: 'university' },
+  { id: 'hp-hcu', pitch: 0, yaw: 355, title: 'Hyderabad Central University', distance: '10 Mins', icon: 'university' },
+  { id: 'hp-airport', pitch: 2, yaw: 145, title: 'Airport', distance: '30 Mins', icon: 'airport' },
+];
+
+export const DEFAULT_ROTATION_DURATION = 30000;
+export const HOTSPOT_PITCH = -3;

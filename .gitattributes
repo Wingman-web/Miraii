@@ -1,0 +1,5 @@
+*.psd filter=lfs diff=lfs merge=lfs -text
+components/Home/Hero/mirai_home1.mov filter=lfs diff=lfs merge=lfs -text
+public/videos/mirai_home1.mov filter=lfs diff=lfs merge=lfs -text
+public/videos/*.mp4 filter=lfs diff=lfs merge=lfs -text
+public/*.JPG filter=lfs diff=lfs merge=lfs -text

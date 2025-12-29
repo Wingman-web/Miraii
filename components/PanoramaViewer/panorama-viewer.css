@@ -1,0 +1,240 @@
+/* Pannellum error suppression */
+.pnlm-error-msg,
+.pnlm-info-box {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Fix overflow issue - allow hotspots to show outside container */
+.pnlm-hotspot-base {
+  overflow: visible !important;
+}
+
+.pnlm-tooltip {
+  overflow: visible !important;
+}
+
+.pnlm-container {
+  overflow: visible !important;
+}
+
+/* ============================================
+   LABEL HOTSPOT - ICON + HOVER EXPAND DESIGN
+   ============================================ */
+
+.label-hotspot {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  pointer-events: auto;
+  font-weight: 400;
+  cursor: pointer;
+  z-index: 1;
+  transition: z-index 0s;
+  overflow: visible !important;
+}
+
+/* Icon container - always visible */
+.hotspot-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 0 0 3px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.hotspot-icon svg {
+  width: 22px;
+  height: 22px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+/* Icon pulse animation */
+.hotspot-icon::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  animation: icon-pulse 2s ease-out infinite;
+  z-index: -1;
+}
+
+@keyframes icon-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Label text container - hidden by default, appears BELOW icon */
+.label-hotspot-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px) scale(0.9);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform-origin: top center;
+  margin-top: 12px;
+  min-width: max-content;
+  z-index: 10;
+}
+
+/* Arrow pointing up from tooltip */
+.label-hotspot-text::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
+
+.label-hotspot-text p,
+.label-hotspot-text small {
+  font-size: 11px;
+  margin: 0;
+  color: #000;
+}
+
+.label-hotspot-text p {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.label-hotspot-text small {
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+/* ============================================
+   HOVER STATE - EXPAND TO FULL DESIGN
+   ============================================ */
+
+/* Bring entire hotspot to front on hover */
+.label-hotspot:hover {
+  z-index: 99999 !important;
+}
+
+.label-hotspot:hover .hotspot-icon {
+  transform: scale(1.1);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 0 0 4px rgba(24, 165, 88, 0.5);
+  z-index: 100001;
+}
+
+.label-hotspot:hover .hotspot-icon svg {
+  color: #18a558;
+}
+
+.label-hotspot:hover .label-hotspot-text {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0) scale(1);
+  z-index: 100002;
+}
+
+@keyframes hotspot-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* ============================================
+   HIGHLIGHT STATE (special locations)
+   ============================================ */
+
+.label-hotspot.highlight .hotspot-icon {
+  background: linear-gradient(135deg, #18a558, #0d7a3e);
+  box-shadow: 
+    0 2px 8px rgba(24, 165, 88, 0.5),
+    0 0 0 3px rgba(24, 165, 88, 0.3);
+}
+
+.label-hotspot.highlight .hotspot-icon svg {
+  color: #fff;
+}
+
+.label-hotspot.highlight .hotspot-icon::after {
+  background: rgba(24, 165, 88, 0.4);
+}
+
+.label-hotspot.highlight:hover .hotspot-icon {
+  box-shadow: 
+    0 4px 16px rgba(24, 165, 88, 0.6),
+    0 0 0 4px rgba(24, 165, 88, 0.5);
+}
+
+.label-hotspot.highlight:hover .label-hotspot-text {
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    0 0 20px rgba(24, 165, 88, 0.4);
+}
+
+/* ============================================
+   MASTER PLAN HOTSPOT
+   ============================================ */
+
+.master-plan-hotspot {
+  background: transparent !important;
+  border: none !important;
+  pointer-events: none !important;
+}
+
+.master-plan-hotspot img {
+  display: block !important;
+  pointer-events: none !important;
+}
+
+/* ============================================
+   PRELOADER ANIMATIONS
+   ============================================ */
+
+@keyframes preloader-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes preloader-spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+.panorama-preloader-spinner {
+  animation: preloader-spin 1s linear infinite;
+}
+
+.panorama-preloader-spinner-slow {
+  animation: preloader-spin-slow 3s linear infinite;
+}
